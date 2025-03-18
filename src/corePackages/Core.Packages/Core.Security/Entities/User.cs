@@ -12,8 +12,11 @@ public class User : Entity<int>
     public bool Status { get; set; }
 
 
-    public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
-
+    public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; } = null!;
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = null!;
+    public virtual ICollection<OtpAuthenticator> OtpAuthenticators { get; set; } = null!;
+    public virtual ICollection<EmailAuthenticator> EmailAuthenticators { get; set; } = null!;
+    
 
     public User()
     {
@@ -34,7 +37,7 @@ public class User : Entity<int>
         Status = status;
     }
 
-    public User(int id, string firstName, string lastName, string email, byte[] passwordSalt, byte[] passwordHash, bool status):this
+    public User(int id, string firstName, string lastName, string email, byte[] passwordSalt, byte[] passwordHash, bool status) : this
         (firstName, lastName, email, passwordSalt, passwordHash, status)
     {
         Id = id;
